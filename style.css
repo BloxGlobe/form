@@ -1,48 +1,135 @@
+/* === GLOBAL === */
 body {
-margin: 0;
-background: #0f0f0f;
-color: white;
-font-family: Arial, sans-serif;
+  margin: 0;
+  background: #0f0f0f;
+  color: white;
+  font-family: Inter, Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
-nav {
-background: #1a1a1a;
-padding: 12px;
-display: flex;
-justify-content: space-around;
-gap: 10px;
-border-bottom: 1px solid #333;
+
+/* === LAYOUT === */
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
-nav button {
-padding: 10px 14px;
-background: #333;
-color: white;
-border: none;
-border-radius: 6px;
-cursor: pointer;
-transition: 0.2s;
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 240px;
+  background: #141414;
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
-nav button:hover {
-background: #444;
+
+.sidebar-header {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  font-weight: 700;
 }
-#app {
-padding: 25px;
-max-width: 650px;
-margin: auto;
+
+.nav-btn {
+  padding: 12px;
+  margin: 6px 0;
+  background: #1c1c1c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+  transition: 0.2s;
 }
-input, textarea {
-width: 100%;
-padding: 12px;
-margin: 10px 0;
-background: #1b1b1b;
-border: 1px solid #333;
-border-radius: 6px;
-color: white;
-font-size: 1rem;
+
+.nav-btn:hover {
+  background: #272727;
 }
-button {
-padding: 12px 14px;
-background: #2274ff;
-color: white;
-border: none;
-border-radius: 6px;
-cursor: pointer;
+
+/* === MAIN CONTENT === */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* === FORM FIELDS === */
+input, textarea, select {
+  width: 100%;
+  padding: 14px;
+  margin: 18px 0;
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #3b86ff;
+  outline: none;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  margin-top: 20px;
+  display: block;
+}
+
+/* Checkboxes */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.checkbox-container input {
+  width: auto;
+}
+
+/* Submit button */
+button[type="submit"] {
+  background: #2274ff;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 15px;
+  transition: 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #3b86ff;
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 15px;
+  }
+
+  .nav-btn {
+    font-size: 0;
+    padding: 16px;
+  }
+
+  .nav-btn::after {
+    /* show emoji only */
+    font-size: 20px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+}

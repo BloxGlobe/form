@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apply</title>
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body class="dark-mode">
+<div class="form-container">
+<h1>Application Form</h1>
+<p class="form-desc">Fill in the form below. Fields marked with * are required.</p>
+
+
+<form id="applicationForm">
+
+
+<!-- Full Name -->
+<label>Full Name *</label>
+<input type="text" id="name" required />
+
+
+<!-- Email -->
+<label>Email *</label>
+<input type="email" id="email" required />
+
+
+<!-- Age -->
+<label>Age *</label>
+<input type="number" id="age" min="10" required />
+
+
+<!-- Discord Username -->
+<label>Discord Username *</label>
+<input type="text" id="discord" placeholder="example: user#1234" required />
+
+
+<!-- Multiple Choice -->
+<label>Which position are you applying for? *</label>
+<select id="position" required>
+<option value="">Select...</option>
+<option>Moderator</option>
+<option>Administrator</option>
+<option>Support Agent</option>
+</select>
+
+
+<!-- Checkbox Agreement -->
+<div class="checkbox-container">
+<input type="checkbox" id="rules" required />
+<label for="rules">I agree to the rules and guidelines *</label>
+</div>
+
+
+<!-- Long Paragraph -->
+<label>Why should we choose you? *</label>
+<textarea id="reason" rows="5" required></textarea>
+
+
+<!-- Submit -->
+<button type="submit">Submit Application</button>
+</form>
+</div>
+</body>
+</html>

@@ -5,31 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Application System</title>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Router -->
+  <link rel="stylesheet" href="style.css">
   <script src="router.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <button onclick="navigate('/')">Apply</button>
-    <button onclick="navigate('/review')">Review</button>
-    <button onclick="navigate('/manage')">Management</button>
-  </nav>
+<div class="layout">
 
-  <!-- Root app container -->
-  <div id="app"></div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Dashboard</h2>
+    </div>
 
-  <script>
-    // Load Apply page by default on first load
-    window.addEventListener("DOMContentLoaded", () => {
-      navigate("/");
-    });
-  </script>
+    <button class="nav-btn" onclick="navigate('/')">📄 Apply</button>
+    <button class="nav-btn" onclick="navigate('/review')">📝 Review</button>
+    <button class="nav-btn" onclick="navigate('/manage')">📂 Management</button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+    <div id="app"></div>
+  </main>
+
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => navigate("/"));
+</script>
 
 </body>
 </html>
