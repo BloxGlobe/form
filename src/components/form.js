@@ -1,4 +1,7 @@
-document.getElementById("applicationForm").addEventListener("submit", e => {
+const supabase = window.supabase.createClient("YOUR_SUPABASE_URL", "YOUR_ANON_KEY");
+
+
+document.getElementById("applicationForm").addEventListener("submit", async (e) => {
 e.preventDefault();
 
 
@@ -7,9 +10,16 @@ const age = document.getElementById("age").value;
 const reason = document.getElementById("reason").value;
 
 
-localStorage.setItem("appData", JSON.stringify({ name, age, reason }));
-
-
-navigate("/review");
+const { data, error } = await supabase.from("applications").insert({
+name,
+age,
+reason,
 });
 
+
+if (error) {
+alert("Failed to submit: " + error.message);
+} else {
+navigate("/review");
+}
+});

@@ -8,6 +8,7 @@ nav {
 background: #1a1a1a;
 padding: 12px;
 display: flex;
+justify-content: space-around;
 gap: 10px;
 border-bottom: 1px solid #333;
 }
@@ -18,30 +19,30 @@ color: white;
 border: none;
 border-radius: 6px;
 cursor: pointer;
+transition: 0.2s;
 }
 nav button:hover {
 background: #444;
 }
 #app {
 padding: 25px;
+max-width: 650px;
+margin: auto;
 }
 input, textarea {
 width: 100%;
-padding: 10px;
+padding: 12px;
 margin: 10px 0;
 background: #1b1b1b;
 border: 1px solid #333;
 border-radius: 6px;
 color: white;
+font-size: 1rem;
 }
 button {
-padding: 10px 14px;
+padding: 12px 14px;
 background: #2274ff;
 color: white;
 border: none;
 border-radius: 6px;
 cursor: pointer;
-}
-button:hover {
-background: #3b86ff;
-}

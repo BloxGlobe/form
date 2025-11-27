@@ -1,18 +1,2 @@
-<h2>Review Application</h2>
+<h2>Review Applications</h2>
 <div id="review"></div>
-
-
-<script>
-const data = JSON.parse(localStorage.getItem("appData"));
-
-
-if (!data) {
-document.getElementById("review").innerHTML = "<p>No application found.</p>";
-} else {
-document.getElementById("review").innerHTML = `
-<p><strong>Name:</strong> ${data.name}</p>
-<p><strong>Age:</strong> ${data.age}</p>
-<p><strong>Reason:</strong> ${data.reason}</p>
-`;
-}
-</script>
