@@ -1,18 +1,36 @@
-// Global helper functions
+const app = document.getElementById("app");
 
-function showError(message) {
-  alert(message);
-}
+const routes = {
+  "apply": "apply.html",
+  "review": "review.html",
+  "manage": "manage.html",
+  "store": "store.html",
+};
 
-function validateEmail(email) {
-  return /\S+@\S+\.\S+/.test(email);
-}
+window.navigate = function (hash) {
+  const path = hash.replace("#", "") || "apply"; // Remove the hash, default to apply
+  const file = routes[path];
 
-function validateRequired(id, label) {
-  const el = document.getElementById(id);
-  if (!el.value.trim()) {
-    showError(label + " is required.");
-    return false;
+  if (!file) {
+    app.innerHTML = `<h2>404 - Page Not Found</h2>`;
+    return;
   }
-  return true;
-}
+
+  fetch(file)
+    .then((res) => res.text())
+    .then((html) => {
+      app.innerHTML = html;
+      window.history.pushState({}, "", hash); // Update history with the hash
+    })
+    .catch(() => {
+      app.innerHTML = `<h2>Error: Could not load ${file}</h2>`;
+    });
+};
+
+window.addEventListener("hashchange", () => {
+  navigate(window.location.hash);
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  navigate(window.location.hash || "#apply");
+});
