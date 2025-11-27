@@ -1,0 +1,11 @@
+<h2>Management Panel</h2>
+<p>Here you can manage submitted applications (demo only).</p>
+<button onclick="clearApps()">Clear Applications</button>
+
+
+<script>
+function clearApps() {
+localStorage.removeItem("appData");
+alert("Applications cleared!");
+}
+</script>
