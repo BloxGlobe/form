@@ -1,24 +1,33 @@
-const supabaseReview = window.supabase.createClient("YOUR_SUPABASE_URL", "YOUR_ANON_KEY");
-
+const SUPABASE_URL = "https://your-project-ref.supabase.co";
+const SUPABASE_ANON_KEY = "your-anon-key";
+const supabaseReview = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function loadReviews() {
-const { data, error } = await supabaseReview.from("applications").select();
+  const { data, error } = await supabaseReview
+    .from("applications")
+    .select()
+    .order("id", { ascending: false });
 
+  if (error) {
+    document.getElementById("review").innerHTML = "<p>Error loading applications.</p>";
+    console.error(error);
+    return;
+  }
 
-if (error) return (document.getElementById("review").innerHTML = "Error loading applications.");
+  if (!data || !data.length) {
+    document.getElementById("review").innerHTML = "<p>No applications yet.</p>";
+    return;
+  }
 
-
-document.getElementById("review").innerHTML = data
-.map(
-(item) => `
-<div style="padding:15px; background:#1a1a1a; margin:10px 0; border-radius:8px;">
-<p><strong>Name:</strong> ${item.name}</p>
-<p><strong>Age:</strong> ${item.age}</p>
-<p><strong>Reason:</strong> ${item.reason}</p>
-</div>`
-)
-.join("");
+  document.getElementById("review").innerHTML = data.map(item => `
+    <div class="app-card">
+      <p><strong>Name:</strong> ${escapeHtml(item.name)}</p>
+      <p><strong>Age:</strong> ${escapeHtml(item.age)}</p>
+      <p><strong>Reason:</strong> ${escapeHtml(item.reason)}</p>
+    </div>
+  `).join("");
 }
 
+function escapeHtml(str){ return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[s])); }
 
 loadReviews();

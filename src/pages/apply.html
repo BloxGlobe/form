@@ -1,16 +1,63 @@
 <h2>Application Form</h2>
+
 <form id="applicationForm">
-<label>Name</label>
-<input type="text" id="name" required />
 
+  <label>Name *</label>
+  <input type="text" id="name" required />
 
-<label>Age</label>
-<input type="number" id="age" required />
+  <label>Email *</label>
+  <input type="email" id="email" required />
 
+  <label>Age *</label>
+  <input type="number" id="age" required />
 
-<label>Reason</label>
-<textarea id="reason" rows="4"></textarea>
+  <label>Do you accept the rules? *</label>
+  <div class="checkbox-container">
+    <input type="checkbox" id="rules" required />
+    <span>I have read and agree to the rules.</span>
+  </div>
 
+  <label>Discord Username *</label>
+  <input type="text" id="discord" required />
 
-<button type="submit">Submit</button>
+  <label>Why do you want to apply? *</label>
+  <textarea id="reason" rows="4" required></textarea>
+
+  <label>Experience Level *</label>
+  <select id="experience" required>
+    <option value="">-- Select --</option>
+    <option>Beginner</option>
+    <option>Intermediate</option>
+    <option>Advanced</option>
+  </select>
+
+  <label>Additional Notes</label>
+  <textarea id="notes" rows="3"></textarea>
+
+  <button type="submit">Submit</button>
 </form>
+
+
+<script>
+document.getElementById("applicationForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const entry = {
+    name: name.value,
+    email: email.value,
+    age: age.value,
+    rules: rules.checked,
+    discord: discord.value,
+    reason: reason.value,
+    experience: experience.value,
+    notes: notes.value,
+    timestamp: new Date().toLocaleString()
+  };
+
+  let stored = JSON.parse(localStorage.getItem("applications") || "[]");
+  stored.push(entry);
+  localStorage.setItem("applications", JSON.stringify(stored));
+
+  navigate('/success');
+});
+</script>
